@@ -41,8 +41,40 @@ Each subdirectory should contain:
 - Ensure scripts are portable and handle dependencies gracefully
 - Include error handling and informative error messages
 
+## Current Tools
+
+### Python - Service Architecture Analyzer
+
+Located in `/python/`, this toolkit analyzes GitLab repositories to document microservice architecture and connections:
+
+**Main Components:**
+- `gitlab_service_analyzer.py` - Crawls GitLab repos and generates architecture documentation
+- `connectivity_analyzer.py` - Core analysis engine for configs and code
+- `check_dependencies.py` - Verifies/installs Python packages
+- `setup_tools.py` - Environment setup helper
+- `setup.sh` - Quick start script for Rocky 8.10 WSL
+
+**Features:**
+- Analyzes docker-compose, Dockerfile, Kubernetes manifests
+- Scans code for HTTP APIs, database connections, message queues
+- Generates markdown documentation with connection matrices
+- Detects: HTTP/REST, gRPC, Databases, Message Queues, etc.
+
+**Quick Start:**
+```bash
+cd python
+bash setup.sh                    # First-time setup
+python3 gitlab_service_analyzer.py --init-config config.yaml
+# Edit config.yaml with GitLab token
+python3 gitlab_service_analyzer.py --config config.yaml
+cat architecture.md              # Review output
+```
+
+See `/python/README.md` for complete documentation.
+
 ## Notes
 
 - Tools should be designed for reusability across projects
 - Documentation should include dependencies and system requirements
 - Consider cross-platform compatibility where applicable
+- All Python tools work on Rocky 8.10 and other Linux distributions
