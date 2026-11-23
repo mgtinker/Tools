@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""
+Example configuration for gitlab_service_analyzer.py
+
+Copy this to config.yaml and update with your environment settings.
+"""
+
+# GitLab Connection Settings
+gitlab:
+  # GitLab server URL (self-hosted or gitlab.com)
+  url: https://gitlab.example.com
+  
+  # Personal access token with API access
+  # Create at: https://gitlab.example.com/-/user_settings/personal_access_tokens
+  # Required scopes: api, read_api, read_repository
+  token: YOUR_GITLAB_TOKEN_HERE
+  
+  # Optional: Analyze only a specific group
+  # Leave null to analyze all projects accessible to the token
+  # Find group ID at: https://gitlab.example.com/groups/your-group/-/settings/general
+  group_id: null
+
+# Output Configuration
+output:
+  # Markdown file with architecture documentation
+  markdown_file: architecture.md
+  
+  # Optional: JSON file with services summary
+  json_file: services.json
+
+# Analysis Options
+analysis:
+  # Analyze code files for service references
+  analyze_code: true
+  
+  # Analyze configuration files (docker-compose, kubernetes, etc)
+  analyze_configs: true
+  
+  # File patterns to scan in code analysis
+  code_patterns:
+    - '*.py'
+    - '*.js'
+    - '*.ts'
+    - '*.go'
+    - '*.java'
+    - '.env'
+    - '.env.*'
+    - '*.conf'
+    - '*.config'
+  
+  # Connection types to look for
+  connection_types:
+    - http          # HTTP/HTTPS API calls
+    - grpc          # gRPC connections
+    - database      # Database connections
+    - postgresql    # PostgreSQL specific
+    - mysql         # MySQL specific
+    - mongodb       # MongoDB specific
+    - redis         # Redis cache
+    - message_queue # Kafka, RabbitMQ, etc
+    - dependency    # Docker-compose depends_on
+    - environment   # Environment variable references
+    - network       # Docker network links
+    - k8s_env       # Kubernetes environment variables
+
+# Temporary Files and Cleanup
+# Directory for cloning repositories (temporary)
+temp_directory: /tmp/gitlab_analysis
+
+# Automatically delete cloned repos after analysis
+# Set to false to keep repos for manual inspection
+cleanup_after: true
+
+# Advanced Options (Optional)
+advanced:
+  # Maximum repository size to clone (MB)
+  max_repo_size: 500
+  
+  # Timeout for git clone operations (seconds)
+  clone_timeout: 300
+  
+  # Number of concurrent clones (1 for safe, higher for speed)
+  concurrent_clones: 1
+  
+  # Exclude specific projects by name pattern (regex)
+  exclude_projects: []
+  
+  # Include only specific projects (overrides exclude)
+  include_projects: []
+
+# Logging
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  file: analyzer.log
