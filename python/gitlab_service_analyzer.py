@@ -15,7 +15,6 @@ Requirements:
 
 import sys
 import json
-import yaml
 import argparse
 import tempfile
 from pathlib import Path
@@ -24,13 +23,18 @@ import subprocess
 from dataclasses import asdict
 from datetime import datetime
 
+# Try to import YAML first for config init
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
 try:
     import gitlab
     import requests
 except ImportError:
-    print("Error: Required packages not installed.")
-    print("Run: python3 check_dependencies.py --auto-install")
-    sys.exit(1)
+    gitlab = None
+    requests = None
 
 from connectivity_analyzer import (
     Service, ServiceConnection, DockerComposeAnalyzer,
@@ -350,37 +354,67 @@ class ArchitectureDocGenerator:
 
 def load_config(config_file: Path) -> Dict:
     """Load configuration from YAML file."""
+    if yaml is None:
+        print("Error: PyYAML not installed. Cannot parse YAML config.")
+        print("Run: python3 check_dependencies.py --auto-install")
+        sys.exit(1)
+    
     with open(config_file, 'r') as f:
         return yaml.safe_load(f)
 
 
 def create_default_config(config_file: Path):
     """Create a default configuration file."""
-    default_config = {
-        'gitlab': {
-            'url': 'https://gitlab.example.com',
-            'token': 'YOUR_GITLAB_TOKEN',
-            'group_id': None,  # Optional: specific group ID to analyze
-        },
-        'output': {
-            'markdown_file': 'architecture.md',
-            'json_file': 'services.json',
-        },
-        'analysis': {
-            'analyze_code': True,
-            'analyze_configs': True,
-            'code_patterns': ['*.py', '*.js', '*.ts', '*.go', '.env*'],
-            'connection_types': [
-                'http', 'grpc', 'database', 'message_queue',
-                'dependency', 'environment', 'network'
-            ],
-        },
-        'temp_directory': '/tmp/gitlab_analysis',
-        'cleanup_after': True,
-    }
+    if yaml is None:
+        # Fallback if yaml not installed - create basic YAML manually
+        config_content = """# GitLab Service Analyzer Configuration
+# See config.example.yaml for detailed options
 
-    with open(config_file, 'w') as f:
-        yaml.dump(default_config, f, default_flow_style=False)
+gitlab:
+  url: 'https://gitlab.example.com'
+  token: 'YOUR_GITLAB_TOKEN'
+  group_id: null
+
+output:
+  markdown_file: 'architecture.md'
+  json_file: 'services.json'
+
+analysis:
+  analyze_code: true
+  analyze_configs: true
+
+temp_directory: '/tmp/gitlab_analysis'
+cleanup_after: true
+"""
+        with open(config_file, 'w') as f:
+            f.write(config_content)
+    else:
+        default_config = {
+            'gitlab': {
+                'url': 'https://gitlab.example.com',
+                'token': 'YOUR_GITLAB_TOKEN',
+                'group_id': None,
+            },
+            'output': {
+                'markdown_file': 'architecture.md',
+                'json_file': 'services.json',
+            },
+            'analysis': {
+                'analyze_code': True,
+                'analyze_configs': True,
+                'code_patterns': ['*.py', '*.js', '*.ts', '*.go', '.env*'],
+                'connection_types': [
+                    'http', 'grpc', 'database', 'message_queue',
+                    'dependency', 'environment', 'network'
+                ],
+            },
+            'temp_directory': '/tmp/gitlab_analysis',
+            'cleanup_after': True,
+        }
+
+        with open(config_file, 'w') as f:
+            yaml.dump(default_config, f, default_flow_style=False)
+
     print(f"Created default configuration: {config_file}")
     print("Please update with your GitLab credentials and run again.")
 
@@ -422,6 +456,16 @@ Examples:
     if not args.config.exists():
         print(f"Error: Config file not found: {args.config}")
         print(f"Run: python3 {sys.argv[0]} --init-config {args.config}")
+        return 1
+
+    if yaml is None:
+        print("Error: PyYAML not installed. Cannot parse configuration.")
+        print("Run: python3 check_dependencies.py --auto-install")
+        return 1
+
+    if gitlab is None or requests is None:
+        print("Error: Required packages not installed (gitlab, requests).")
+        print("Run: python3 check_dependencies.py --auto-install")
         return 1
 
     config = load_config(args.config)
