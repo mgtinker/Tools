@@ -78,3 +78,13 @@ See `/python/README.md` for complete documentation.
 - Documentation should include dependencies and system requirements
 - Consider cross-platform compatibility where applicable
 - All Python tools work on Rocky 8.10 and other Linux distributions
+
+## License and Copyright
+
+This repository uses a **Commons Clause + MIT License** to protect commercial use while allowing free non-commercial use.
+
+**Key Points:**
+- **Non-Commercial Use**: Free (educational, personal, open-source, internal business tools)
+- **Commercial Use**: Requires separate Commercial License Agreement
+- See LICENSE file for complete legal terms
+- Contact repository owner for commercial licensing inquiries
