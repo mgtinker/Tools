@@ -180,14 +180,17 @@ When adding new tools:
 
 ## License
 
-This repository is licensed under the **Commons Clause + MIT License**.
+This repository is licensed under the **Commons Clause + MIT License** with custom commercial restrictions.
 
 **Summary:**
 - ✅ **Non-Commercial Use**: Free for educational, personal, and open-source projects
 - ✅ **Internal Tools**: Free to use within your organization (not sold/offered externally)
-- ❌ **Commercial Use**: Requires a Commercial License Agreement
+- ❌ **Commercial Use**: Requires a Commercial License Agreement (selling, building services, derivatives)
 
-See [LICENSE](./LICENSE) for full details. For commercial licensing inquiries, contact mgtinker through the GitHub repository.
+**Learn more:**
+- **Quick Reference**: See [COMMERCIAL_USE.md](./COMMERCIAL_USE.md) for allowed/restricted activities
+- **Full Legal Terms**: See [LICENSE](./LICENSE) for complete legal text
+- **Commercial Inquiry**: Open a GitHub Issue titled "Commercial License Inquiry"
 
 ## Support
 

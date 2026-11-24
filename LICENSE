@@ -1,4 +1,4 @@
-Commons Clause + MIT License
+Commons Clause + Custom Commercial Restrictions
 
 COMMONS CLAUSE LICENSE CONDITION v1.0
 ======================================
@@ -23,6 +23,36 @@ Licensor: mgtinker
 
 ---
 
+COMMERCIAL USE AND DERIVATIVE RESTRICTIONS
+============================================
+
+In addition to the Commons Clause restrictions above, the following commercial
+activities are PROHIBITED without an explicit Commercial License Agreement:
+
+1. COMMERCIAL SALE
+   - Selling this Software or any copies of it
+   - Licensing this Software for a fee
+   - Including this Software as part of a commercial product or service
+
+2. COMMERCIAL SERVICES
+   - Offering services built on top of this Software
+   - Providing consulting, support, or integration services based on this Software
+   - Creating hosted services or SaaS offerings using this Software
+   - Using this Software as the basis for commercial tools or platforms
+
+3. DERIVATIVE COMMERCIAL USE
+   - Creating commercial products derived from this Software
+   - Building proprietary tools based on this Software's functionality
+   - Integrating this Software into commercial applications for resale
+   - Offering customized versions of this Software commercially
+
+4. COMMERCIAL DISTRIBUTION
+   - Distributing this Software commercially (even with modifications)
+   - Bundling this Software with commercial offerings
+   - Using this Software in commercial project delivery
+
+---
+
 MIT LICENSE
 ===========
 
@@ -38,8 +68,8 @@ furnished to do so, subject to the following conditions:
 1. The above copyright notice and this permission notice shall be included in
    all copies or substantial portions of the Software.
 
-2. The Commons Clause License Condition (above) shall be included in all copies
-   or substantial portions of the Software.
+2. The Commons Clause License Condition and Commercial Use Restrictions (above)
+   shall be included in all copies or substantial portions of the Software.
 
 3. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -51,14 +81,18 @@ furnished to do so, subject to the following conditions:
 
 ---
 
-COMMERCIAL LICENSE
-==================
+COMMERCIAL LICENSE REQUIREMENT
+===============================
 
-If you wish to use this Software for commercial purposes, you must obtain a
-separate Commercial License Agreement from mgtinker.
+If you wish to engage in ANY of the commercial activities listed above, you must
+obtain a separate Commercial License Agreement from mgtinker BEFORE proceeding.
 
-For inquiries regarding commercial licensing, please contact mgtinker through
-the GitHub repository or project page.
+Unauthorized commercial use is a breach of this license and may result in legal
+action.
+
+For inquiries regarding commercial licensing, please contact mgtinker through:
+- GitHub Repository: https://github.com/mgtinker/Tools
+- Create a GitHub Issue marked as "Commercial License Inquiry"
 
 ---
 
@@ -66,9 +100,39 @@ NON-COMMERCIAL USE PERMITTED
 =============================
 
 Non-commercial use of this software is permitted free of charge under the terms
-of the MIT License and Commons Clause above. This includes educational use,
-personal projects, open-source projects, and internal business tools that are
-not sold or offered to third parties.
+of the MIT License and these Restrictions. This includes:
+
+✅ ALLOWED:
+- Educational use (schools, universities, training)
+- Personal projects (hobby, learning)
+- Open-source projects (GPL, MIT, Apache 2.0, etc)
+- Internal business tools (used only within your organization)
+- Internal process automation (not offered to customers)
+- Non-profit use
+- Research and experimentation
+
+❌ NOT ALLOWED (Requires Commercial License):
+- Selling the software or services based on it
+- Building commercial tools or platforms on top of it
+- Offering it as part of a commercial service
+- Creating derivative commercial products
+- Integrating into commercial applications for resale
+- Using in commercial project delivery to clients
 
 For clarification on what constitutes commercial vs. non-commercial use, please
-refer to the Commons Clause definition of "Sell" above.
+refer to the definitions above.
+
+---
+
+LIABILITY AND ENFORCEMENT
+==========================
+
+This license is binding and enforceable. Violation of commercial use restrictions
+may result in:
+- Cease and desist notices
+- Injunctive relief
+- Monetary damages
+- Legal action to enforce these terms
+
+By using this Software, you agree to comply with all terms and conditions herein.
+
